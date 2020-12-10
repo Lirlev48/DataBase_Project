@@ -98,6 +98,9 @@ for table, name in [(movies_table, "movies"), (movies_to_genres_table, "movies_t
     df = pd.DataFrame(table)
     df.to_csv(name + ".csv")
 
+# tell me when you're done
+print('\a')
+
 ############
 # rapidapi #
 ############
