@@ -124,9 +124,9 @@ from alive_progress import alive_bar
 # print(html_file.prettify())
 
 
-###############
-# liron's csv #
-###############
+##############
+# csv parser #
+##############
 
 movies_to_directors_table = {"imdb_id": [], "director_id": []}
 directors_table = {"id": [], "name": []}
