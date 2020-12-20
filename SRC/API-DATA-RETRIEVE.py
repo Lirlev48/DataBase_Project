@@ -3,10 +3,10 @@ import pandas as pd
 import json
 from alive_progress import alive_bar
 
-#
-# ############
-# # TMDB API #
-# ############
+
+############
+# TMDB API #
+############
 #
 # TMDB_API_key = "7850d29af5bf2c21a33f5980cd20a4e7"
 #
@@ -57,7 +57,7 @@ from alive_progress import alive_bar
 #             for key in movies_table:
 #                 movies_table[key].append(cur_movie[key])
 #
-#             cur_movie_id = cur_movie["id"]
+#             cur_movie_id = cur_movie["imdb_id"]
 #
 #             # insert to genres:
 #             insert_to_table_x(cur_movie_id, "genres", genres_table, movies_to_genres_table, genres_keys, "genres_id",
@@ -101,6 +101,7 @@ from alive_progress import alive_bar
 # # tell me when you're done
 # print('\a')
 
+
 ############
 # rapidapi #
 ############
@@ -127,32 +128,32 @@ from alive_progress import alive_bar
 ##############
 # csv parser #
 ##############
-
-movies_to_directors_table = {"imdb_id": [], "director_id": []}
-directors_table = {"id": [], "name": []}
-directors_keys = {}
-directors_id = 0
-
-# load csv file
-df = pd.read_csv("IMDb movies-3.csv", encoding = "ISO-8859-1")
-# remove everything but director and imdb_id
-for col in df.copy():
-    if col != "director" and col != "imdb_title_id":
-        df.drop(col, inplace=True, axis=1)
-# iterate
-for index, r in df.iterrows():
-    if type(r["director"]) != str:
-        continue
-    d_list = r["director"].split(',')
-    m = r["imdb_title_id"]
-    for d in d_list:
-        if d not in directors_keys:
-            directors_keys[d] = directors_id
-            directors_id += 1
-            directors_table["id"].append(directors_keys[d])
-            directors_table["name"].append(d)
-        movies_to_directors_table["imdb_id"].append(m)
-        movies_to_directors_table["director_id"].append(directors_keys[d])
-
-pd.DataFrame(movies_to_directors_table).to_csv("movies_to_directors.csv")
-pd.DataFrame(directors_table).to_csv("directors.csv")
+#
+# movies_to_directors_table = {"imdb_id": [], "director_id": []}
+# directors_table = {"id": [], "name": []}
+# directors_keys = {}
+# directors_id = 0
+#
+# # load csv file
+# df = pd.read_csv("IMDb movies-3.csv", encoding = "ISO-8859-1")
+# # remove everything but director and imdb_id
+# for col in df.copy():
+#     if col != "director" and col != "imdb_title_id":
+#         df.drop(col, inplace=True, axis=1)
+# # iterate
+# for index, r in df.iterrows():
+#     if type(r["director"]) != str:
+#         continue
+#     d_list = r["director"].split(',')
+#     m = r["imdb_title_id"]
+#     for d in d_list:
+#         if d not in directors_keys:
+#             directors_keys[d] = directors_id
+#             directors_id += 1
+#             directors_table["id"].append(directors_keys[d])
+#             directors_table["name"].append(d)
+#         movies_to_directors_table["imdb_id"].append(m)
+#         movies_to_directors_table["director_id"].append(directors_keys[d])
+#
+# pd.DataFrame(movies_to_directors_table).to_csv("movies_to_directors.csv")
+# pd.DataFrame(directors_table).to_csv("directors.csv")
