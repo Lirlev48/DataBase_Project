@@ -3,8 +3,8 @@ import mysql.connector
 
 
 tunnel = SSHTunnelForwarder(('nova.cs.tau.ac.il', 22),
-                            ssh_username=input("insert your moodel username: "),
-                            ssh_password=input("insert your moodel password: "),
+                            ssh_username=input("insert your moodle username: "),
+                            ssh_password=input("insert your moodle password: "),
                             remote_bind_address=('mysqlsrv1.cs.tau.ac.il', 3306))
 tunnel.start()
 
