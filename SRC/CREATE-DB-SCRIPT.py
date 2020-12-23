@@ -1,11 +1,10 @@
 from sshtunnel import SSHTunnelForwarder
-import pandas as pd
 import mysql.connector
 
 
 tunnel = SSHTunnelForwarder(('nova.cs.tau.ac.il', 22),
-                            ssh_password='',
-                            ssh_username='saharg',
+                            ssh_username=input("insert your moodel username: "),
+                            ssh_password=input("insert your moodel password: "),
                             remote_bind_address=('mysqlsrv1.cs.tau.ac.il', 3306))
 tunnel.start()
 
