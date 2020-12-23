@@ -157,3 +157,9 @@ from alive_progress import alive_bar
 #
 # pd.DataFrame(movies_to_directors_table).to_csv("movies_to_directors.csv")
 # pd.DataFrame(directors_table).to_csv("directors.csv")
+
+
+################
+# csv to mysql #
+################
+
