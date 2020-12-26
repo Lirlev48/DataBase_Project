@@ -3,6 +3,8 @@ import pandas as pd
 import json
 from alive_progress import alive_bar
 import pickle
+from sshtunnel import SSHTunnelForwarder
+import mysql.connector
 
 
 ############
@@ -181,8 +183,3 @@ import pickle
 #
 # print(validate)
 #
-
-################
-# csv to mysql #
-################
-
