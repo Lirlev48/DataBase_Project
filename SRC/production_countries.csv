@@ -2,25 +2,128 @@
 0,FI,Finland
 1,US,United States of America
 2,JP,Japan
-3,AT,Austria
-4,DE,Germany
-5,AR,Argentina
-6,DK,Denmark
-7,FR,France
-8,IS,Iceland
-9,IT,Italy
-10,NL,Netherlands
-11,NO,Norway
-12,SE,Sweden
-13,GB,United Kingdom
-14,CA,Canada
-15,ES,Spain
-16,IL,Israel
-17,MX,Mexico
-18,PS,Palestinian Territory
+3,AR,Argentina
+4,DK,Denmark
+5,FR,France
+6,DE,Germany
+7,IS,Iceland
+8,IT,Italy
+9,NL,Netherlands
+10,NO,Norway
+11,SE,Sweden
+12,GB,United Kingdom
+13,CA,Canada
+14,ES,Spain
+15,IL,Israel
+16,MX,Mexico
+17,PS,Palestinian Territory
+18,AT,Austria
 19,CH,Switzerland
 20,HK,Hong Kong
 21,CN,China
 22,UY,Uruguay
 23,PY,Paraguay
 24,IE,Ireland
+25,PL,Poland
+26,KR,South Korea
+27,LU,Luxembourg
+28,AU,Australia
+29,NZ,New Zealand
+30,TW,Taiwan
+31,RW,Rwanda
+32,ZA,South Africa
+33,CZ,Czech Republic
+34,HU,Hungary
+35,BA,Bosnia and Herzegovina
+36,HR,Croatia
+37,PT,Portugal
+38,EC,Ecuador
+39,CO,Colombia
+40,IN,India
+41,RU,Russia
+42,MA,Morocco
+43,BR,Brazil
+44,BE,Belgium
+45,SU,Soviet Union
+46,MT,Malta
+47,GR,Greece
+48,XC,Czechoslovakia
+49,SK,Slovakia
+50,XG,East Germany
+51,RS,Serbia
+52,RO,Romania
+53,MN,Mongolia
+54,EE,Estonia
+55,LV,Latvia
+56,BG,Bulgaria
+57,UG,Uganda
+58,CL,Chile
+59,PE,Peru
+60,LI,Liechtenstein
+61,TH,Thailand
+62,BF,Burkina Faso
+63,EG,Egypt
+64,IR,Iran
+65,JO,Jordan
+66,PK,Pakistan
+67,KH,Cambodia
+68,TR,Turkey
+69,DZ,Algeria
+70,DJ,Djibouti
+71,SI,Slovenia
+72,AF,Afghanistan
+73,VN,Vietnam
+74,CS,Serbia and Montenegro
+75,LK,Sri Lanka
+76,SG,Singapore
+77,ME,Montenegro
+78,HT,Haiti
+79,UA,Ukraine
+80,NA,Namibia
+81,AD,Andorra
+82,LT,Lithuania
+83,JM,Jamaica
+84,LB,Lebanon
+85,IQ,Iraq
+86,BW,Botswana
+87,PH,Philippines
+88,LR,Liberia
+89,KZ,Kazakhstan
+90,CY,Cyprus
+91,YU,Yugoslavia
+92,AW,Aruba
+93,TN,Tunisia
+94,BY,Belarus
+95,TJ,Tajikistan
+96,UZ,Uzbekistan
+97,VE,Venezuela
+98,MK,Macedonia
+99,GH,Ghana
+100,MY,Malaysia
+101,ID,Indonesia
+102,PA,Panama
+103,KY,Cayman Islands
+104,ET,Ethiopia
+105,CU,Cuba
+106,MC,Monaco
+107,MO,Macao
+108,GE,Georgia
+109,BT,Bhutan
+110,TC,Turks and Caicos Islands
+111,SZ,Swaziland
+112,DO,Dominican Republic
+113,PR,Puerto Rico
+114,TD,Chad
+115,NG,Nigeria
+116,AL,Albania
+117,ZM,Zambia
+118,AE,United Arab Emirates
+119,AM,Armenia
+120,NP,Nepal
+121,KW,Kuwait
+122,LY,Libyan Arab Jamahiriya
+123,SA,Saudi Arabia
+124,KP,North Korea
+125,KE,Kenya
+126,BS,Bahamas
+127,TL,Timor-Leste
