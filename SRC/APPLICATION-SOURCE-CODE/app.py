@@ -3,7 +3,7 @@ import datetime
 import generateQueries
 app = Flask(__name__)
 
-genere_list
+genere_list = None
 
 
 @app.route("/")

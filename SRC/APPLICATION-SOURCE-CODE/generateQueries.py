@@ -40,10 +40,10 @@ def RenderMoviesFromGeneres(genre, from_date, to_date, limit): #change name of f
     genre = '%' + genre + '%' #why %?
     lim = int(limit)
     args = (genre, from_date, to_date, limit,)
-    iter = est_connection(get_movies_by_genere_and_date_range, args)
+    iter = est_connection(queries.get_movies_by_genere_and_date_range(), args)
     return iter
 
 def renderAllGenres():
-    generate_all_generes = return_all_generes()
+    generate_all_generes = queries.return_all_generes()
     iter = est_connection(generate_all_generes)
     return iter

@@ -37,3 +37,24 @@ def count_number_of_movies_for_production_companies_per_country():
             ")"
             " GROUP BY name"
             )
+
+
+# return the amount of movies in some genre
+def movies_in_genre():
+    return (" SELECT count(*) " 
+            " FROM genres, movies_to_genres "
+            " WHERE genres.genre == '(%s)' "
+            " AND genres.id == movies_to_genres.genres_id ")
+
+
+# return all the movies in some languages and the their director start with some letter
+def movies_in_language_and_director():
+    return (" SELECT movies.title " 
+            " FROM spoken_languages, movies_to_languages, movies, directors, movies_to_directors "
+            " WHERE spoken_languages.english_name == '(%s)' "
+            " AND spoken_languages.id == movies_to_languages.spoken_languages_id "
+            " AND movies_to_languages.imdb_id == movies.imdb_id "
+            
+            " AND SUBSTRING(directors.director, 1, 1) == '(%s)' "
+            " AND directors.id == movies_to_directors.director_id "
+            " AND movies_to_directors.imdb_id == movies.imdb_id ")
