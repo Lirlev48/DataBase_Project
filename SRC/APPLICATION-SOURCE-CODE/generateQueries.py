@@ -3,15 +3,21 @@ from mysql.connector import errorcode
 from datetime import date
 from datetime import datetime
 import queries
+from sshtunnel import SSHTunnelForwarder
 
 
 def est_connection(query, args=None): # TODO change name of func, variables, prints and details
+    tunnel = SSHTunnelForwarder(('nova.cs.tau.ac.il', 22),
+                                                                                                              ssh_username= 'saharg', # input("insert your moodle username: "),
+                                                                                                              ssh_password= 'Shani555', # input("insert your moodle password: "),
+                                remote_bind_address=('mysqlsrv1.cs.tau.ac.il', 3306))
+    tunnel.start()
     details = {
-        'user': 'DbMysql08',
-        'password': 'lennon',
-        'host': 'mysqlsrv1.cs.tau.ac.il',
-        'database': 'DbMysql08',
-        'port': 3306,
+        'user': 'DbMysql02',
+        'password': 'DbMysql02',
+        'host': '127.0.0.1',
+        'database': 'DbMysql02',
+        'port': tunnel.local_bind_port,
         'raise_on_warnings': True,
     } # add connector details
     cnx = mysql.connector.connect(**details)
@@ -29,18 +35,17 @@ def est_connection(query, args=None): # TODO change name of func, variables, pri
         cur.execute(query, args)
     else:
         cur.execute(query)
-    iterator = iter(cur)
+    iterator = [t[0] for t in cur]
     cnx.commit()
     cnx.close()
     return iterator
 
 
 def RenderMoviesFromGeneres(genre, from_date, to_date, limit): #change name of func and variables
-    query_artist_from_gen = queries.choose_artists_according_to_genere()
-    genre = '%' + genre + '%' #why %?
-    lim = int(limit)
+    genre = genre
+    limit = int(limit)
     args = (genre, from_date, to_date, limit,)
-    iter = est_connection(queries.get_movies_by_genere_and_date_range(), args)
+    iter = est_connection(queries.get_movies_by_genre_and_date_range(), args)
     return iter
 
 def renderAllGenres():

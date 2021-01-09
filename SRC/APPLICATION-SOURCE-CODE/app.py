@@ -1,32 +1,38 @@
-from flask import Flask, render_template, request, json,url_for
+from flask import Flask, render_template, request, json, url_for
 import datetime
 import generateQueries
 app = Flask(__name__)
 
-genere_list = None
 
 
 @app.route("/")
 def home():
-        return render_template('x.html') #TODO need to add home page html
+    return render_template('index.html') #TODO need to add home page html
+
 
 @app.route("/q1")
 def q1():
-    genere_list = generateQueries.renderAllGenres()
-    return render_template('q1.html',genres=genere_list)
+    genre_list = generateQueries.renderAllGenres()
+    return render_template('q1.html', genres=genre_list)
 
 
 @app.route("/q1-output", methods=["POST"])
 def q1_result():
+    genre_list = generateQueries.renderAllGenres()
     genre = request.form.get("genres")
     from_date = request.form.get("from")  ##Y - Date style att todo
     to_date = request.form.get("to")  ##Y - Date style att todo
     limit = request.form.get("limit")
-    if (limit == "" or  not limit.isdigit()) or genre =="" or (genre not in genere_list): #TODO need to make sure the genres list is a dropdown and the user can't write what he wants
+    if (limit == "" or not limit.isdigit()) or genre =="" or (genre not in genre_list): #TODO need to make sure the genres list is a dropdown and the user can't write what he wants
         return render_template('404page.html') # TODO need to add 404Page
     iter_res = generateQueries.RenderMoviesFromGeneres(genre, from_date, to_date, limit)
-
     return render_template('query1Format.html', iter_movies=iter_res)
+
+
+
+
+if __name__ == '__main__':
+    app.run(port="8888", debug=True)
 
 
 # potential queries
