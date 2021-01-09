@@ -15,25 +15,10 @@
     <h2 > Get all relevant movies by genre and release date </h2>
 
 
-      <p class="lead"> Enter a genre and the release date range to receive a list of all movies in the specific genere that were released in the range selected.
-          The result will be sorted from the newest released movies to the oldest. Also, add a limit to the output. You will receive the limited amount of rows at most
-          (or less if the limit exceeds the output)
+      <p class="lead"> Enter the release date range to receive a list that ranks the spoken languages of the movies in the applied range from most spoken language to least spoken language.
+          The list will return the language name and the number of movies in which that language was spoken.
            </p>
-    <form action="/q1-output" method="post">
-    <div class="row">
-      <div class="form-group">
-      <div class="col-md-12 ">
-            <label for="year1">Select the movie genre:</label>
-
-                  <input type="text" id="genres" name="genres" list="genre-list" placeholder="Choose a genre">
-                   <datalist id="genre-list">
-                          {% for genre in genres %}
-                              <option value="{{genre[0]}}"> {{ genre[0] }}</option>
-                          {% endfor %}
-                    </datalist>
-       </div>
-      </div>
-    </div>
+    <form action="/q2-output" method="post">
     <div class="row">
         <div>
             <div class="col-md-11">
@@ -48,15 +33,6 @@
 
             <input class="form-control" type="date" value="2012-08-20" name="to">
           </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group">
-            <div class="col-md-12">
-            <label for="amount">Enter the number of movies to be returned:</label>
-
-            <input class="form-control " name="limit" placeholder="amount" autocomplete="off">
-            </div>
         </div>
     </div>
         <div class="form-group">
