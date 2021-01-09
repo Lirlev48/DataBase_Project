@@ -4,10 +4,8 @@ import generateQueries
 app = Flask(__name__)
 
 
-
 @app.route("/")
 def home():
-    print("x")
     return render_template('index.html') #TODO need to add home page html
 
 @app.route("/q1")
