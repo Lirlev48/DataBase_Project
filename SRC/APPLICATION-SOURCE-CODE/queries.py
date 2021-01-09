@@ -11,11 +11,13 @@ def get_movies_by_genre_and_date_range():
 
 def return_all_generes():
     return ("SELECT DISTINCT genres.genre "
-            "FROM genres")
+            "FROM genres ORDER BY genres.genre")
+
 
 def generate_all_countries():
     return ("SELECT DISTINCT production_countries.name "
-            "FROM production_countries")
+            "FROM production_countries ORDER BY production_countries.name")
+
 
 def rank_top_languages():
     return (" SELECT spoken_languages.english_name, count(Distinct spoken_tbl.imdb_id) AS count_movies_per_language"
@@ -28,8 +30,7 @@ def rank_top_languages():
 
 
 def count_number_of_movies_for_production_companies_per_country():
-    return (
-            "SELECT tlb.pname as company, tlb.gname as genre "
+    return ("SELECT tlb.pname as company, tlb.gname as genre "
             "FROM "
             "(SELECT production_companies.name as pname, genres.genre as gname, "
             "count(distinct movies.imdb_id) as count_movies_per_genre "
@@ -39,9 +40,7 @@ def count_number_of_movies_for_production_companies_per_country():
             "AND movies_to_genres.genres_id = genres.id AND movies.imdb_id = movies_to_genres.imdb_id "
             "AND movies_to_production_companies.imdb_id =  movies.imdb_id "
             "AND movies_to_production_companies.production_companies_id =  production_companies.id "
-
-            "AND production_countries.name = '%s' "
-      
+            "AND production_countries.name like '%s' "
             "GROUP BY production_companies.name, genres.genre) as tlb "
             "WHERE"
             " tlb.count_movies_per_genre >= ALL("
@@ -53,7 +52,7 @@ def count_number_of_movies_for_production_companies_per_country():
             "AND movies_to_genres.genres_id = genres.id AND movies.imdb_id = movies_to_genres.imdb_id "
             "AND movies_to_production_companies.imdb_id =  movies.imdb_id "
             "AND movies_to_production_companies.production_companies_id =  production_companies.id "
-            "AND production_countries.name LIKE %s "
+            "AND production_countries.name like '%s' "
             "AND tlb.pname =production_companies.name AND tlb.gname = genres.genre "
             "GROUP BY production_companies.name, genres.genre)"
             )
