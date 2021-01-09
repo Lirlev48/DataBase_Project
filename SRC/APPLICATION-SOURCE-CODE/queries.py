@@ -53,7 +53,7 @@ def count_number_of_movies_for_production_companies_per_country():
             "AND movies_to_production_companies.imdb_id =  movies.imdb_id "
             "AND movies_to_production_companies.production_companies_id =  production_companies.id "
             "AND production_countries.name like '%s' "
-            "AND tlb.pname =production_companies.name AND tlb.gname = genres.genre "
+            "AND tlb.pname =production_companies.name "
             "GROUP BY production_companies.name, genres.genre)"
             )
 
