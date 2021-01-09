@@ -68,3 +68,13 @@ def renderAllCountries():
     generate_all_countries = queries.generate_all_countries()
     iter = est_connection(generate_all_countries)
     return iter
+
+
+def render_avg_vote_for_company_and_genre():
+    iter = est_connection(queries.production_company_and_genre_average_vote())
+    return iter
+
+def render_num_of_movies_for_language_in_specific_budget_range(minimum_budget, maximum_budget):
+    args = (float(minimum_budget), float(maximum_budget),)
+    iter = est_connection(queries.num_of_movies_for_language_in_specific_budget_range(), args)
+    return iter

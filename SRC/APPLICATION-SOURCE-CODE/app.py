@@ -52,6 +52,25 @@ def q3_result():
     iter_res = generateQueries.RenderCountNumberOfMoviesForProductionCompaniesPerCountry(country)
     return render_template('query3Format.html', iter_res=iter_res)
 
+
+@app.route("/q4-output")
+def q4_result():
+    iter_res = generateQueries.render_avg_vote_for_company_and_genre()
+    return render_template('query4Format.html', iter_companies_genres_votes=iter_res)
+
+
+@app.route("/q6")
+def q6():
+    genre_list = generateQueries.renderAllGenres()
+    return render_template('q6.html', genres=genre_list)
+
+@app.route("/q6-output", methods=["POST"])
+def q6_result():
+    minimum_budget = request.form.get("minimum_budget")
+    maximum_budget = request.form.get("maximum_budget")
+    iter_res = generateQueries.render_num_of_movies_for_language_in_specific_budget_range(minimum_budget, maximum_budget)
+    return render_template('query6Format.html', iter_language_and_num_of_movies=iter_res)
+
 if __name__ == '__main__':
     app.run(port="8888", debug=True)
 

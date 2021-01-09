@@ -80,7 +80,7 @@ def full_text():
             "order by directors.director, movies.title")
 
 
-def another_one():
+def num_of_movies_for_language_in_specific_budget_range():
     return ("SELECT spoken_languages.english_name, Count(Distinct movies.imdb_id) as count "
             "from movies, movies_to_spoken_languages as msl, spoken_languages "
             "where movies.imdb_id = msl.imdb_id and msl.spoken_languages_id = spoken_languages.id "
