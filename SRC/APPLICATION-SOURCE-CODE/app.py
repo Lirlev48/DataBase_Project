@@ -61,8 +61,7 @@ def q4_result():
 
 @app.route("/q6")
 def q6():
-    genre_list = generateQueries.renderAllGenres()
-    return render_template('q6.html', genres=genre_list)
+    return render_template('q6.html')
 
 @app.route("/q6-output", methods=["POST"])
 def q6_result():
