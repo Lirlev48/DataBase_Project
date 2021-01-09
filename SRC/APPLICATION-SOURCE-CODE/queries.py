@@ -11,12 +11,7 @@ def get_movies_by_genre_and_date_range():
 
 def return_all_generes():
     return ("SELECT DISTINCT genres.genre "
-            "FROM genres ORDER BY genres.genre")
-
-
-def generate_all_countries():
-    return ("SELECT DISTINCT production_countries.name "
-            "FROM production_countries ORDER BY production_countries.name")
+            "FROM genres")
 
 
 def rank_top_languages():
@@ -30,9 +25,8 @@ def rank_top_languages():
 
 
 def count_number_of_movies_for_production_companies_per_country():
-    return ("SELECT tlb.pname as company, tlb.gname as genre "
-            "FROM "
-            "(SELECT production_companies.name as pname, genres.genre as gname, "
+    return ("SELECT tlb.pname as company, tlb.gname as genre, max(tlb.count_movies_per_genre) as maxima "
+            "FROM (SELECT production_companies.name as pname, genres.genre as gname, "
             "count(distinct movies.imdb_id) as count_movies_per_genre "
             "FROM movies, production_countries, production_companies, movies_to_genres, "
             "genres, movies_to_production_companies "
@@ -40,24 +34,12 @@ def count_number_of_movies_for_production_companies_per_country():
             "AND movies_to_genres.genres_id = genres.id AND movies.imdb_id = movies_to_genres.imdb_id "
             "AND movies_to_production_companies.imdb_id =  movies.imdb_id "
             "AND movies_to_production_companies.production_companies_id =  production_companies.id "
-            "AND production_countries.name like '%s' "
+            "AND production_countries.name = '(%s)' "
             "GROUP BY production_companies.name, genres.genre) as tlb "
-            "WHERE"
-            " tlb.count_movies_per_genre >= ALL("
-            "SELECT "
-            "count(distinct movies.imdb_id) as count_movies_per_genre "
-            "FROM movies, production_countries, production_companies, movies_to_genres, "
-            "genres, movies_to_production_companies "
-            "Where production_companies.origin_country = production_countries.id "
-            "AND movies_to_genres.genres_id = genres.id AND movies.imdb_id = movies_to_genres.imdb_id "
-            "AND movies_to_production_companies.imdb_id =  movies.imdb_id "
-            "AND movies_to_production_companies.production_companies_id =  production_companies.id "
-            "AND production_countries.name like '%s' "
-            "AND tlb.pname =production_companies.name "
-            "GROUP BY production_companies.name, genres.genre)"
-            )
+            "GROUP BY tlb.pname, tlb.gname")
 
 
+#@@UPDATE_HERE
 def production_company_and_genre_average_vote():
     return ("Select production_companies.name, genres.genre, AVG(movies.vote_average) as Average_vote "
             " From production_companies, movies, movies_to_genres as mtg, genres, movies_to_production_companies as mtpc"
@@ -70,17 +52,16 @@ def production_company_and_genre_average_vote():
 def full_text():
     return ("SELECT movies.title, directors.director "
             "FROM spoken_languages, movies_to_spoken_languages, movies, directors, movies_to_directors "
-            "WHERE spoken_languages.english_name = %s "
+            "WHERE spoken_languages.english_name = '(%s)' "
             "AND spoken_languages.id = movies_to_spoken_languages.spoken_languages_id "
             "AND movies_to_spoken_languages.imdb_id = movies.imdb_id "
-
-            "AND directors.director LIKE '(%s%)' "
+            "AND SUBSTRING(directors.director, 1, 1) = '(%s)' "
             "AND directors.id = movies_to_directors.director_id "
             "AND movies_to_directors.imdb_id = movies.imdb_id "
             "order by directors.director, movies.title")
 
-
-def another_one():
+#@@UPDATE_HERE
+def num_of_movies_for_language_in_specific_budget_range():
     return ("SELECT spoken_languages.english_name, Count(Distinct movies.imdb_id) as count "
             "from movies, movies_to_spoken_languages as msl, spoken_languages "
             "where movies.imdb_id = msl.imdb_id and msl.spoken_languages_id = spoken_languages.id "
@@ -94,9 +75,9 @@ def last():
         "SELECT movies.title, movies.vote_average, movies.runtime "
         "from movies, movies_to_genres, genres "
         "where movies.imdb_id = movies_to_genres.imdb_id and movies_to_genres.genres_id = genres.id "
-        "and movies.runtime <= %s and movies.runtime >= %s and genres.genre = %s "
+        "and movies.runtime <= %s and movies.runtime >= %s and genres.genre = '(%s)' "
         "and movies.imdb_id in "
         "(Select Distinct mtsl.imdb_id from movies_to_spoken_languages as mtsl, spoken_languages "
         "where mtsl.spoken_languages_id = spoken_languages.id "
-        "and spoken_languages.english_name in (%s, %s)) "
+        "and spoken_languages.english_name in ('Italian','German')) "
         "order by movies.vote_average DESC")
