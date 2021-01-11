@@ -23,6 +23,10 @@ def q3():
     countries_list =generateQueries.renderAllCountries()
     return render_template('q3.html', countries=countries_list)
 
+@app.route("/q6")
+def q6():
+    return render_template('q6.html')
+
 
 @app.route("/q1-output", methods=["POST"])
 def q1_result():
@@ -59,9 +63,6 @@ def q4_result():
     return render_template('query4Format.html', iter_companies_genres_votes=iter_res)
 
 
-@app.route("/q6")
-def q6():
-    return render_template('q6.html')
 
 @app.route("/q6-output", methods=["POST"])
 def q6_result():
