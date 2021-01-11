@@ -31,6 +31,24 @@ def q1_result():
 
 
 
+@app.route("/q7")
+def q7():
+    genre_list = generateQueries.renderAllGenres()
+    return render_template('q7.html', genres=genre_list)
+
+
+@app.route("/q7-output", methods=["POST"])
+def q7_result():
+    genre_list = [ t[ 0 ] for t in generateQueries.renderAllGenres() ]
+    genre = request.form.get("genres")
+    runtime_from =  request.form.get("runtime_from")
+    runtime_to =  request.form.get("runtime_to")
+    language1 = request.form.get("language1")
+    language2 = request.form.get("language2")
+    iter_res = generateQueries.runtime_gener_languages(runtime_from, runtime_to,genre, language1,language2)
+    return render_template('query7Format.html', iter_movies=iter_res)
+
+
 if __name__ == '__main__':
     app.run(port="8888", debug=True)
 

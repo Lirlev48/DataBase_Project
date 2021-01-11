@@ -52,3 +52,9 @@ def renderAllGenres():
     generate_all_generes = queries.return_all_generes()
     iter = est_connection(generate_all_generes)
     return iter
+
+
+def runtime_gener_languages(runtime_from, runtime_to,genre, language1,language2): #change name of func and variables
+    args = (runtime_from, runtime_to,genre, language1,language2,)
+    iter = est_connection(queries.last(), args)
+    return iter
