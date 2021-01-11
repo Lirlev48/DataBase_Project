@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Query2</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/styles1.css">
+
+</head>
+
+<body>
+
+<div class="container">
+    <h2 > Get all relevant movies by genre and release date </h2>
+
+
+      <p class="lead">Enter the release date range to receive a list that ranks the spoken languages of the movies in the applied range from most spoken language to least spoken language.
+          The list contains the language name and the number of movies in which that language was spoken.
+           </p>
+    <form action="/q2-output" method="post">
+    <div class="row">
+        <div>
+            <div class="col-md-11">
+          <label for="example-date-input" >From</label>
+         <input class="form-control" type="date" value="2012-08-20" name="from">
+          </div>
+        </div>
+
+        <div>
+            <div class="col-md-11">
+          <label for="example-date-input" >Until</label>
+
+            <input class="form-control" type="date" value="2012-08-20" name="to">
+          </div>
+        </div>
+    </div>
+        <div class="form-group">
+            <button class="btn btn-outline-info btn-block">Submit</button>
+         </div>
+        </form>
+</div>
+
+
+<div class="container mt-2">
+  <div class="row">
+    <div class="col text-center">
+      <a class="btn btn-outline-warning" href="/index" role="button">Home Page</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

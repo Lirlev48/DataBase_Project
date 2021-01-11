@@ -4,7 +4,7 @@
 
 <head>
 
-  <title>Query1 Output</title>
+  <title>Query6 Output</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -32,13 +32,16 @@
         <table id = "myTable" class= "table-responsive container table table-hover table-bordered table-striped" style="width:100%; border:1px solid black;margin-left:auto;margin-right:auto;padding:2px;border-spacing:20px;">
             <thead style = "background-color: #182953; color: white;" align= "center">
                 <tr>
-                    	<th align ='center'>Movie</th>
+                    	<th align ='center'>Language</th>
+                        <th align ='center'>Num of movies</th>
+
                 </tr>
             </thead>
             <tbody align = "center">
-                {% for movie in iter_movies %}
+                {% for language_and_num_of_movies in iter_language_and_num_of_movies %}
                 <tr>
-                    	<td align ='center'> {{ movie[0] }}</td>
+                    	<td align ='center'> {{ language_and_num_of_movies[0] }}</td>
+                        <td align ='center'> {{ language_and_num_of_movies[1] }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

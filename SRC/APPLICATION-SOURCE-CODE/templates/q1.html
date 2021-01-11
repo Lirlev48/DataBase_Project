@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Query Number 1</title>
+  <title>Query1</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -15,7 +15,7 @@
     <h2 > Get all relevant movies by genre and release date </h2>
 
 
-      <p class="lead"> Enter a genre and the release date range to receive a list of all movies in the specific genere that were released in the range selected.
+      <p class="lead"> Enter a genre and the release date range to receive a list of all movies in the specific genre that were released in the range selected.
           The result will be sorted from the newest released movies to the oldest. Also, add a limit to the output. You will receive the limited amount of rows at most
           (or less if the limit exceeds the output)
            </p>
@@ -28,7 +28,7 @@
                   <input type="text" id="genres" name="genres" list="genre-list" placeholder="Choose a genre">
                    <datalist id="genre-list">
                           {% for genre in genres %}
-                              <option value="{{genre}}"> {{ genre }}</option>
+                              <option value="{{genre[0]}}"> {{ genre[0] }}</option>
                           {% endfor %}
                     </datalist>
        </div>
