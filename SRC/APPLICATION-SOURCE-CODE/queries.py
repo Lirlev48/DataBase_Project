@@ -94,7 +94,7 @@ def last():
         "SELECT movies.title, movies.vote_average, movies.runtime "
         "from movies, movies_to_genres, genres "
         "where movies.imdb_id = movies_to_genres.imdb_id and movies_to_genres.genres_id = genres.id "
-        "and movies.runtime <= %s and movies.runtime >= %s and genres.genre = %s "
+        "and movies.runtime >= %s and movies.runtime <= %s and genres.genre = %s "
         "and movies.imdb_id in "
         "(Select Distinct mtsl.imdb_id from movies_to_spoken_languages as mtsl, spoken_languages "
         "where mtsl.spoken_languages_id = spoken_languages.id "

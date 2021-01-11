@@ -8,8 +8,8 @@ from sshtunnel import SSHTunnelForwarder
 
 def est_connection(query, args=None): # TODO change name of func, variables, prints and details
     tunnel = SSHTunnelForwarder(('nova.cs.tau.ac.il', 22),
-                                                                                                              ssh_username= 'shellyv', # input("insert your moodle username: "),
-                                                                                                              ssh_password= 'Manen1996', # input("insert your moodle password: "),
+                                                                                                              ssh_username= 'saharg', # input("insert your moodle username: "),
+                                                                                                              ssh_password= 'Shani555', # input("insert your moodle password: "),
                                 remote_bind_address=('mysqlsrv1.cs.tau.ac.il', 3306))
     tunnel.start()
     details = {
@@ -35,7 +35,7 @@ def est_connection(query, args=None): # TODO change name of func, variables, pri
         cur.execute(query, args)
     else:
         cur.execute(query)
-    iterator = list(cur)
+    iterator = [t[0] for t in cur]
     cnx.commit()
     cnx.close()
     return iterator
@@ -48,33 +48,7 @@ def RenderMoviesFromGeneres(genre, from_date, to_date, limit): #change name of f
     iter = est_connection(queries.get_movies_by_genre_and_date_range(), args)
     return iter
 
-def RenderRankTopLanguages(from_date, to_date): #change name of func and variables
-    args = (from_date, to_date)
-    iter = est_connection(queries.rank_top_languages(), args)
-    return iter
-
-
-def RenderCountNumberOfMoviesForProductionCompaniesPerCountry(country_name): #change name of func and variables
-    args = (country_name)
-    iter = est_connection(queries.count_number_of_movies_for_production_companies_per_country(), args)
-    return iter
-
 def renderAllGenres():
     generate_all_generes = queries.return_all_generes()
     iter = est_connection(generate_all_generes)
-    return iter
-
-def renderAllCountries():
-    generate_all_countries = queries.generate_all_countries()
-    iter = est_connection(generate_all_countries)
-    return iter
-
-
-def render_avg_vote_for_company_and_genre():
-    iter = est_connection(queries.production_company_and_genre_average_vote())
-    return iter
-
-def render_num_of_movies_for_language_in_specific_budget_range(minimum_budget, maximum_budget):
-    args = (float(minimum_budget), float(maximum_budget),)
-    iter = est_connection(queries.num_of_movies_for_language_in_specific_budget_range(), args)
     return iter
