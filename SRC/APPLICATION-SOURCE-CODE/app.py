@@ -28,6 +28,13 @@ def q6():
     return render_template('q6.html')
 
 
+@app.route("/q7")
+def q7():
+    genre_list = generateQueries.renderAllGenres()
+    return render_template('q7.html', genres=genre_list)
+
+
+
 @app.route("/q1-output", methods=["POST"])
 def q1_result():
     genre_list = [t[0] for t in generateQueries.renderAllGenres()]
@@ -71,10 +78,6 @@ def q6_result():
     iter_res = generateQueries.render_num_of_movies_for_language_in_specific_budget_range(minimum_budget, maximum_budget)
     return render_template('query6Format.html', iter_language_and_num_of_movies=iter_res)
 
-@app.route("/q7")
-def q7():
-    genre_list = generateQueries.renderAllGenres()
-    return render_template('q7.html', genres=genre_list)
 
 
 @app.route("/q7-output", methods=["POST"])
