@@ -35,7 +35,8 @@ def q6():
 @app.route("/q7")
 def q7():
     genre_list = generateQueries.render_all_genres()
-    return render_template('q7.html', genres=genre_list)
+    language_list = generateQueries.render_all_languages()
+    return render_template('q7.html', genres=genre_list, languages=language_list)
 
 
 @app.route("/q1-output", methods=["POST"])
@@ -45,8 +46,8 @@ def q1_result():
     from_date = request.form.get("from")  ##Y - Date style att todo
     to_date = request.form.get("to")
     limit = request.form.get("limit")
-    if (limit == "" or not limit.isdigit()) or genre == "" or (
-            genre not in genre_list):  # TODO need to make sure the genres list is a dropdown and the user can't write what he wants
+    if limit == "" or not limit.isdigit() or genre == "" or \
+            genre not in genre_list:  # TODO need to make sure the genres list is a dropdown and the user can't write what he wants
         return render_template('404page.html')  # TODO need to add 404Page
     iter_res = generateQueries.render_movies_from_generes(genre, from_date, to_date, limit)
     return render_template('query1Format.html', iter_movies=iter_res)
@@ -64,8 +65,8 @@ def q2_result():
 def q3_result():
     country_list = [t[0] for t in generateQueries.render_all_countries()]
     country = request.form.get("countries")
-    if (country == "" or (
-            country not in country_list)):  # TODO need to make sure the genres list is a dropdown and the user can't write what he wants
+    if country == "" or \
+            country not in country_list:  # TODO need to make sure the genres list is a dropdown and the user can't write what he wants
         return render_template('404page.html')  # TODO need to add 404Page
     iter_res = generateQueries.render_count_number_of_movies_for_production_companies_per_country(country)
     return render_template('query3Format.html', iter_res=iter_res)
@@ -81,17 +82,28 @@ def q4_result():
 def q6_result():
     minimum_budget = request.form.get("minimum_budget")
     maximum_budget = request.form.get("maximum_budget")
+    if maximum_budget == "" or not maximum_budget.isdigit()\
+            or minimum_budget == "" or not minimum_budget.isdigit():  # TODO need to make sure the genres list is a dropdown and the user can't write what he wants
+        return render_template('404page.html')  # TODO need to add 404Page
     iter_res = generateQueries.render_num_of_movies_for_language_in_specific_budget_range(minimum_budget, maximum_budget)
     return render_template('query6Format.html', iter_language_and_num_of_movies=iter_res)
 
 
 @app.route("/q7-output", methods=["POST"])
 def q7_result():
+    genre_list = [t[0] for t in generateQueries.render_all_genres()]
+    language_list = [t[0] for t in generateQueries.render_all_languages()]
     genre = request.form.get("genres")
     runtime_from = request.form.get("runtime_from")
     runtime_to = request.form.get("runtime_to")
     language1 = request.form.get("language1")
     language2 = request.form.get("language2")
+    if runtime_from == "" or not runtime_from.isdigit() \
+            or runtime_to == "" or not runtime_to.isdigit() \
+            or genre == "" or genre not in genre_list \
+            or language1 not in language_list or language2 not in language_list \
+            or language1 == "" or language2 == "":  # TODO need to make sure the genres list is a dropdown and the user can't write what he wants
+        return render_template('404page.html')  # TODO need to add 404Page
     iter_res = generateQueries.runtime_genre_languages(runtime_from, runtime_to, genre, language1, language2)
     return render_template('query7Format.html', iter_movies=iter_res)
 

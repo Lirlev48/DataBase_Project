@@ -14,6 +14,11 @@ def return_all_generes():
             "FROM genres ORDER BY genres.genre")
 
 
+def return_all_languages():
+    return ("SELECT DISTINCT spoken_languages.english_name "
+            "FROM spoken_languages ORDER BY spoken_languages.english_name")
+
+
 def generate_all_countries():
     return ("SELECT DISTINCT production_countries.name "
             "FROM production_countries ORDER BY production_countries.name")
@@ -58,11 +63,12 @@ def count_number_of_movies_for_production_companies_per_country():
 
 def production_company_and_genre_average_vote():
     return ("Select production_companies.name, genres.genre, AVG(movies.vote_average) as Average_vote "
-            " From production_companies, movies, movies_to_genres as mtg, genres, movies_to_production_companies as mtpc"
-            " Where production_companies.id = mtpc.production_companies_id and mtpc.imdb_id = movies.imdb_id "
-            " and mtg.imdb_id = movies.imdb_id and mtg.genres_id = genres.id"
-            " group by production_companies.name, genres.genre "
-            " Order by Average_vote DESC")
+            "From production_companies, movies, movies_to_genres as mtg, genres, "
+            "movies_to_production_companies as mtpc "
+            "Where production_companies.id = mtpc.production_companies_id and mtpc.imdb_id = movies.imdb_id "
+            "and mtg.imdb_id = movies.imdb_id and mtg.genres_id = genres.id "
+            "group by production_companies.name, genres.genre "
+            "Order by Average_vote DESC")
 
 
 def full_text():
@@ -88,13 +94,12 @@ def num_of_movies_for_language_in_specific_budget_range():
 
 
 def last():
-    return (
-        "SELECT movies.title, movies.vote_average, movies.runtime "
-        "from movies, movies_to_genres, genres "
-        "where movies.imdb_id = movies_to_genres.imdb_id and movies_to_genres.genres_id = genres.id "
-        "and movies.runtime >= %s and movies.runtime <= %s and genres.genre = %s "
-        "and movies.imdb_id in "
-        "(Select Distinct mtsl.imdb_id from movies_to_spoken_languages as mtsl, spoken_languages "
-        "where mtsl.spoken_languages_id = spoken_languages.id "
-        "and spoken_languages.english_name in (%s, %s)) "
-        "order by movies.vote_average DESC")
+    return ("SELECT movies.title, movies.vote_average, movies.runtime "
+            "from movies, movies_to_genres, genres "
+            "where movies.imdb_id = movies_to_genres.imdb_id and movies_to_genres.genres_id = genres.id "
+            "and movies.runtime >= %s and movies.runtime <= %s and genres.genre = %s "
+            "and movies.imdb_id in "
+            "(Select Distinct mtsl.imdb_id from movies_to_spoken_languages as mtsl, spoken_languages "
+            "where mtsl.spoken_languages_id = spoken_languages.id "
+            "and spoken_languages.english_name in (%s, %s)) "
+            "order by movies.vote_average DESC")

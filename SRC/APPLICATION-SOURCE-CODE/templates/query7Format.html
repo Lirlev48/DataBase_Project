@@ -29,19 +29,41 @@
 <div class="container">
     <p class="text-center lead" align = "center">  </p>
 	<div class="d-flex justify-content-center" align = "center">
-        <table id = "myTable" class= "table-responsive container table table-hover table-bordered table-striped" style="width:100%; border:1px solid black;margin-left:auto;margin-right:auto;padding:2px;border-spacing:20px;">
+
+    <table id = "myTable" class= "table-responsive container table table-hover table-bordered table-striped" style="width:100%; border:1px solid black;margin-left:auto;margin-right:auto;padding:2px;border-spacing:20px;">
             <thead style = "background-color: #182953; color: white;" align= "center">
                 <tr>
-                    	<th align ='center'>Movie</th>
+                    	<th align ='center'>Title</th>
+                        <th align ='center'>Average Vote</th>
+                        <th align ='center'>Runtime</th>
+
                 </tr>
             </thead>
             <tbody align = "center">
                 {% for movie in iter_movies %}
                 <tr>
                     	<td align ='center'> {{ movie[0] }}</td>
+                        <td align ='center'> {{ movie[1] }}</td>
+                        <td align ='center'> {{ movie[2] }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
+        </table>
+
+
+{#        <table id = "myTable" class= "table-responsive container table table-hover table-bordered table-striped" style="width:100%; border:1px solid black;margin-left:auto;margin-right:auto;padding:2px;border-spacing:20px;">#}
+{#            <thead style = "background-color: #182953; color: white;" align= "center">#}
+{#                <tr>#}
+{#                    	<th align ='center'>Movie</th>#}
+{#                </tr>#}
+{#            </thead>#}
+{#            <tbody align = "center">#}
+{#                {% for movie in iter_movies %}#}
+{#                <tr>#}
+{#                    	<td align ='center'> {{ movie[0] }}</td>#}
+{#                </tr>#}
+{#                {% endfor %}#}
+{#            </tbody>#}
         </table>
 	</div>
 
@@ -68,7 +90,7 @@ $(document).ready(function(){
 
 
 <div class="img" align = "center">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSno1xYu6iSkSBbsyD5xnDK7HrAs8uVYxTrES0A_s84jOi39LbD&s"/>
+    <img src="https://images.all-free-download.com/images/graphiclarge/photographic_equipment_vector_288713.jpg"/>
 </div>
 
 </body>

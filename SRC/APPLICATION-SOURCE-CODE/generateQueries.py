@@ -56,8 +56,13 @@ def render_all_genres():
     return est_connection(generate_all_generes)
 
 
+def render_all_languages():
+    generate_all_language = queries.return_all_languages()
+    return est_connection(generate_all_language)
+
+
 def runtime_genre_languages(runtime_from, runtime_to, genre, language1, language2):
-    args = (runtime_from, runtime_to,genre, language1,language2,)
+    args = (int(runtime_from), int(runtime_to), genre, language1, language2,)
     return est_connection(queries.last(), args)
 
 
@@ -78,5 +83,5 @@ def render_avg_vote_for_company_and_genre():
 
 
 def render_num_of_movies_for_language_in_specific_budget_range(minimum_budget, maximum_budget):
-    args = (float(minimum_budget), float(maximum_budget),)
+    args = (int(minimum_budget), int(maximum_budget),)
     return est_connection(queries.num_of_movies_for_language_in_specific_budget_range(), args)
