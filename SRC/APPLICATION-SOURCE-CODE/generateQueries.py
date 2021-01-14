@@ -7,7 +7,7 @@ from sshtunnel import SSHTunnelForwarder
 def est_connection(query, args=None):
     tunnel = SSHTunnelForwarder(('nova.cs.tau.ac.il', 22),
                                 ssh_username='saharg',
-                                ssh_password='Taupass6',
+                                ssh_password='',
                                 remote_bind_address=('mysqlsrv1.cs.tau.ac.il', 3306))
     tunnel.start()
     details = {
