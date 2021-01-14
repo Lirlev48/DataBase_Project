@@ -93,10 +93,11 @@ def q4_result():
 def q5_result():
     from_date = request.form.get("from")
     to_date = request.form.get("to")
-    fulltext = request.form.get("fulltext")
-    if fulltext == "":
+    fulltext_in = request.form.get("fulltext_in")
+    fulltext_out = request.form.get("fulltext_out")
+    if fulltext_in == "" or fulltext_out == "":
         return render_template('404page.html')
-    iter_res = generateQueries.render_movies_from_text(fulltext, from_date, to_date)
+    iter_res = generateQueries.render_movies_from_text(f"+{fulltext_in}* -{fulltext_out}*", from_date, to_date)
     return render_template('query5Format.html', iter_title_and_overview=iter_res)
 
 

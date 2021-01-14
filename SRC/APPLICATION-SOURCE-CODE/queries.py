@@ -74,8 +74,8 @@ def production_company_and_genre_average_vote():
 
 def movies_from_text():
     return ("select title, overview "
-            "from movies where match(overview,title) "
-            "against(%s, IN NATURAL LANGUAGE MODE) "
+            "from movies where match(title, overview) "
+            "against(%s IN BOOLEAN MODE) "
             "AND movies.release_date BETWEEN DATE (%s) AND DATE (%s)")
 
 
