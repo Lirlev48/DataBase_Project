@@ -1,15 +1,13 @@
 import mysql.connector
 from mysql.connector import errorcode
-from datetime import date
-from datetime import datetime
 import queries
 from sshtunnel import SSHTunnelForwarder
 
 
-def est_connection(query, args=None): # TODO change name of func, variables, prints and details
+def est_connection(query, args=None):
     tunnel = SSHTunnelForwarder(('nova.cs.tau.ac.il', 22),
-                                                                                                              ssh_username= 'saharg', # input("insert your moodle username: "),
-                                                                                                              ssh_password= '', # input("insert your moodle password: "),
+                                ssh_username='saharg', # input("insert your moodle username: "),
+                                ssh_password='', # input("insert your moodle password: "),
                                 remote_bind_address=('mysqlsrv1.cs.tau.ac.il', 3306))
     tunnel.start()
     details = {
@@ -46,9 +44,9 @@ def render_rank_top_languages(from_date, to_date):
     return est_connection(queries.rank_top_languages(), args)
 
 
-def render_count_number_of_movies_for_production_companies_per_country(country_name):
+def render_return_the_specialization_genre_of_companies(country_name):
     args = (country_name)
-    return est_connection(queries.count_number_of_movies_for_production_companies_per_country(), args)
+    return est_connection(queries.return_the_specialization_genre_of_companies(), args)
 
 
 def render_all_genres():

@@ -34,7 +34,7 @@ def rank_top_languages():
             " ORDER BY count_movies_per_language desc")
 
 
-def count_number_of_movies_for_production_companies_per_country():
+def return_the_specialization_genre_of_companies():
     return ("SELECT tlb.pname as company, tlb.gname as genre "
             "FROM "
             "(SELECT production_companies.name as pname, genres.genre as gname, "
