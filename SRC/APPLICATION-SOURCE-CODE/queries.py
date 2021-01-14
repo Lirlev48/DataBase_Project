@@ -6,7 +6,7 @@ def get_movies_by_genre_and_date_range():
             "AND genres.genre LIKE %s "
             "AND movies.release_date BETWEEN DATE (%s) AND DATE (%s) "
             "ORDER BY  movies.release_date DESC "
-            "LIMIT %s ")
+            "LIMIT %s")
 
 
 def return_all_generes():
@@ -68,20 +68,15 @@ def production_company_and_genre_average_vote():
             "Where production_companies.id = mtpc.production_companies_id and mtpc.imdb_id = movies.imdb_id "
             "and mtg.imdb_id = movies.imdb_id and mtg.genres_id = genres.id "
             "group by production_companies.name, genres.genre "
-            "Order by Average_vote DESC")
+            "Order by Average_vote DESC, production_companies.name, genres.genre "
+            "LIMIT %s")
 
 
-def full_text():
-    return ("SELECT movies.title, directors.director "
-            "FROM spoken_languages, movies_to_spoken_languages, movies, directors, movies_to_directors "
-            "WHERE spoken_languages.english_name = %s "
-            "AND spoken_languages.id = movies_to_spoken_languages.spoken_languages_id "
-            "AND movies_to_spoken_languages.imdb_id = movies.imdb_id "
-
-            "AND directors.director LIKE '(%s%)' "
-            "AND directors.id = movies_to_directors.director_id "
-            "AND movies_to_directors.imdb_id = movies.imdb_id "
-            "order by directors.director, movies.title")
+def movies_from_text():
+    return ("select title, overview "
+            "from movies where match(overview,title) "
+            "against(%s, IN NATURAL LANGUAGE MODE) "
+            "AND movies.release_date BETWEEN DATE (%s) AND DATE (%s)")
 
 
 def num_of_movies_for_language_in_specific_budget_range():

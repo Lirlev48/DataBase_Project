@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Query4</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/styles1.css">
+
+</head>
+
+<body>
+
+<div class="container">
+    <h2 > Presents for each production company and for each genre it created the average votes per all movies in the corresponding genre </h2>
+
+
+      <p class="lead"> Add a limit to the output. You will receive the limited amount of rows at most
+          (or less if the limit exceeds the output)  </p>
+    <form action="/q4-output" method="post">
+        <div class="row">
+        <div class="form-group">
+            <div class="col-md-12">
+            <label for="amount">Enter the number of movies to be returned:</label>
+
+            <input class="form-control " name="limit" placeholder="amount" autocomplete="off">
+            </div>
+        </div>
+    </div>
+        <div class="form-group">
+            <button class="btn btn-outline-info btn-block">Submit</button>
+         </div>
+        </form>
+</div>
+
+
+<div class="container mt-2">
+  <div class="row">
+    <div class="col text-center">
+      <a class="btn btn-outline-warning" href="/index" role="button">Home Page</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

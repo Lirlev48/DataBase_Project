@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>Query5 Output</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!--link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css"-->
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+
+
+</head>
+
+
+<body>
+
+<div class="container">
+  <h2> Results </h2>
+</div>
+
+<div class="container">
+    <p class="text-center lead" align = "center">  </p>
+	<div class="d-flex justify-content-center" align = "center">
+        <table id = "myTable" class= "table-responsive container table table-hover table-bordered table-striped" style="width:100%; border:1px solid black;margin-left:auto;margin-right:auto;padding:2px;border-spacing:20px;">
+            <thead style = "background-color: #182953; color: white;" align= "center">
+                <tr>
+                    	<th align ='center'>Title</th>
+                        <th align ='center'>overview</th>
+
+                </tr>
+            </thead>
+            <tbody align = "center">
+                {% for title_and_overview in iter_title_and_overview %}
+                <tr>
+                    	<td align ='center'> {{ title_and_overview[0] }}</td>
+                        <td align ='center'> {{ title_and_overview[1] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+	</div>
+
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript"  src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript"  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable({
+	"ordering": false,
+});
+});
+</script>
+
+<div class="container mt-2">
+  <div class="row">
+    <div class="col text-center">
+      <a class="btn btn-outline-warning" href="/index" role="button">Home Page</a>
+    </div>
+  </div>
+</div>
+
+<div class="img" align = "center">
+    <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Ficon-library.com%2Fimages%2Fmovie-camera-icon-png%2Fmovie-camera-icon-png-1.jpg&imgrefurl=https%3A%2F%2Ficon-library.com%2Ficon%2Fmovie-camera-icon-png-6.html&tbnid=DcQMSpy_gkoeeM&vet=10CBoQMyhyahcKEwiwmreC4JTuAhUAAAAAHQAAAAAQAg..i&docid=KzewxXQJlJh6YM&w=802&h=980&q=film%20roll%20image&hl=en&ved=0CBoQMyhyahcKEwiwmreC4JTuAhUAAAAAHQAAAAAQAg#imgrc=T4bBDQMHkXwd8M&imgdii=Vxj6Jk_yXMS_CM"/>
+</div>
+
+</body>
+</html>

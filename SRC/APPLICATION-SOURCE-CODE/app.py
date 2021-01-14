@@ -27,6 +27,16 @@ def q3():
     return render_template('q3.html', countries=countries_list)
 
 
+@app.route("/q4")
+def q4():
+    return render_template('q4.html')
+
+
+@app.route("/q5")
+def q5():
+    return render_template('q5.html')
+
+
 @app.route("/q6")
 def q6():
     return render_template('q6.html')
@@ -72,10 +82,24 @@ def q3_result():
     return render_template('query3Format.html', iter_res=iter_res)
 
 
-@app.route("/q4-output")
+@app.route("/q4-output", methods=["POST"])
 def q4_result():
-    iter_res = generateQueries.render_avg_vote_for_company_and_genre()
+    limit = request.form.get("limit")
+    if limit == "" or not limit.isdigit():  # TODO need to make sure the genres list is a dropdown and the user can't write what he wants
+        return render_template('404page.html')  # TODO need to add 404Page
+    iter_res = generateQueries.render_avg_vote_for_company_and_genre(limit)
     return render_template('query4Format.html', iter_companies_genres_votes=iter_res)
+
+
+@app.route("/q5-output", methods=["POST"])
+def q5_result():
+    from_date = request.form.get("from")  ##Y - Date style att todo
+    to_date = request.form.get("to")
+    fulltext = request.form.get("fulltext")
+    if fulltext == "":  # TODO need to make sure the genres list is a dropdown and the user can't write what he wants
+        return render_template('404page.html')  # TODO need to add 404Page
+    iter_res = generateQueries.render_movies_from_text(fulltext, from_date, to_date)
+    return render_template('query5Format.html', iter_title_and_overview=iter_res)
 
 
 @app.route("/q6-output", methods=["POST"])

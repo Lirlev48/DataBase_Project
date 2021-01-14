@@ -9,7 +9,7 @@ from sshtunnel import SSHTunnelForwarder
 def est_connection(query, args=None): # TODO change name of func, variables, prints and details
     tunnel = SSHTunnelForwarder(('nova.cs.tau.ac.il', 22),
                                                                                                               ssh_username= 'saharg', # input("insert your moodle username: "),
-                                                                                                              ssh_password= 'Shani555', # input("insert your moodle password: "),
+                                                                                                              ssh_password= '', # input("insert your moodle password: "),
                                 remote_bind_address=('mysqlsrv1.cs.tau.ac.il', 3306))
     tunnel.start()
     details = {
@@ -78,8 +78,14 @@ def render_movies_from_generes(genre, from_date, to_date, limit):
     return est_connection(queries.get_movies_by_genre_and_date_range(), args)
 
 
-def render_avg_vote_for_company_and_genre():
-    return est_connection(queries.production_company_and_genre_average_vote())
+def render_movies_from_text(fulltext, from_date, to_date):
+    args = (fulltext, from_date, to_date,)
+    return est_connection(queries.movies_from_text(), args)
+
+
+def render_avg_vote_for_company_and_genre(limit):
+    args = (int(limit),)
+    return est_connection(queries.production_company_and_genre_average_vote(), args)
 
 
 def render_num_of_movies_for_language_in_specific_budget_range(minimum_budget, maximum_budget):

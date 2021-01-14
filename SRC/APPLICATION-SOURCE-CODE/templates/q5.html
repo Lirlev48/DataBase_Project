@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+  <title>Query1</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/styles1.css">
+
+</head>
+
+<body>
+
+<div class="container">
+    <h2 > Get all relevant movies by release date and text that matches against the title or overview of the movie </h2>
+
+
+      <p class="lead"> Enter text you want to search against and the release date range to receive a list of all movies that were released in the range selected and that
+          either their title or overiew of the movie matched the inputted text.
+           </p>
+    <form action="/q5-output" method="post">
+    <div class="row">
+        <div>
+            <div class="col-md-11">
+          <label for="example-date-input" >From</label>
+         <input class="form-control" type="date" value="2012-08-20" name="from">
+          </div>
+        </div>
+
+        <div>
+            <div class="col-md-11">
+          <label for="example-date-input" >Until</label>
+
+            <input class="form-control" type="date" value="2012-08-20" name="to">
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-12">
+            <label for="amount">Enter the text you want to search against the title and overview:</label>
+
+            <input class="form-control " name="limit" placeholder="fulltext" autocomplete="off">
+            </div>
+        </div>
+    </div>
+        <div class="form-group">
+            <button class="btn btn-outline-info btn-block">Submit</button>
+         </div>
+        </form>
+</div>
+
+
+<div class="container mt-2">
+  <div class="row">
+    <div class="col text-center">
+      <a class="btn btn-outline-warning" href="/index" role="button">Home Page</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
