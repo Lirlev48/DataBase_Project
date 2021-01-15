@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Query1</title>
@@ -12,28 +11,15 @@
 <body>
 
 <div class="container">
-    <h2 > Presents all relevant movies by genre and release date </h2>
+    <h2 >Presents all relevant movies by release date and text that matches against the title or overview of the movie(Can be both)</h2>
 
 
-      <p class="lead"> Enter a genre and the release date range to receive a list of all movies in the specific genre that were released in the range selected.
-          The result will be sorted from the newest released movies to the oldest. Also, add a limit to the output. You will receive the limited amount of rows at most
-          (or less if the limit exceeds the output)
-           </p>
-    <form action="/q1-output" method="post">
-    <div class="row">
-      <div class="form-group">
-      <div class="col-md-12 ">
-            <label for="year1">Select the movie genre:</label>
-
-                  <input type="text" id="genres" name="genres" list="genre-list" placeholder="Choose a genre">
-                   <datalist id="genre-list">
-                          {% for genre in genres %}
-                              <option value="{{genre[0]}}"> {{ genre[0] }}</option>
-                          {% endfor %}
-                    </datalist>
-       </div>
-      </div>
-    </div>
+      <p class="lead"> Enter text you want to appear (as a full word or prefix) in the movie title or movie overview.
+          Enter text you do not want to appear (as a full word or prefix) in the movie title or movie overview.
+          Enter the release date range to receive a list of all movies that were released in the range selected.
+          Get a list of all titles and overviews that matched your request
+      </p>
+    <form action="/q5-output" method="post">
     <div class="row">
         <div>
             <div class="col-md-11">
@@ -53,9 +39,13 @@
     <div class="row">
         <div class="form-group">
             <div class="col-md-12">
-            <label for="amount">Enter the number of movies to be returned:</label>
+            <label for="amount"></label>
+            <input class="form-control " name="fulltext_in" placeholder="Wanted word" autocomplete="off">
+            </div>
 
-            <input class="form-control " name="limit" placeholder="amount" autocomplete="off">
+            <div class="col-md-12">
+            <label for="amount"></label>
+            <input class="form-control " name="fulltext_out" placeholder="Unwanted word" autocomplete="off">
             </div>
         </div>
     </div>

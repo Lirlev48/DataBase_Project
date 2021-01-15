@@ -12,10 +12,12 @@
 <body>
 
 <div class="container">
-    <h2 > ########### </h2>
+    <h2 > Presents all relevant movies by genre, runtime range in minutes, languages </h2>
 
 
-      <p class="lead"> ######3 </p>
+      <p class="lead"> Enter the runtime range of the  movie you want to view in minutes.
+          Enter 2 languages you want to see your movie in (either one or both will be returned)
+          Enter a genre you want to view. get a list of all movies ordered by their average vote that apply to those filters </p>
     <form action="/q7-output" method="post">
     <div class="row">
       <div class="form-group">
@@ -25,7 +27,7 @@
                   <input type="text" id="genres" name="genres" list="genre-list" placeholder="Choose a genre">
                    <datalist id="genre-list">
                           {% for genre in genres %}
-                              <option value="{{genre}}"> {{ genre }}</option>
+                              <option value="{{genre[0]}}"> {{ genre[0] }}</option>
                           {% endfor %}
                     </datalist>
        </div>
@@ -34,36 +36,46 @@
     <div class="row">
         <div>
             <div class="col-md-11">
-          <label for="example-date-input" >From</label>
-         <input class="form-control" type="date" value="2012-08-20" name="runtime_from">
+          <label for="example-date-input" >Lower Bound</label>
+                <input class="form-control " name="runtime_from" placeholder="minutes" autocomplete="off">
           </div>
         </div>
 
         <div>
             <div class="col-md-11">
-          <label for="example-date-input" >Until</label>
-
-            <input class="form-control" type="date" value="2012-08-20" name="runtime_to">
+          <label for="example-date-input" >Upper Bound</label>
+                <input class="form-control " name="runtime_to" placeholder="minutes" autocomplete="off">
           </div>
         </div>
     </div>
+
 
     <div class="row">
-        <div>
-            <div class="col-md-11">
-          <label for="language1" >language1</label>
-         <input class="form-control" type="text"  name="language1">
-          </div>
-        </div>
+            <div>
+                <div class="col-md-11">
+                  <label for="language1" >Language 1</label>
+                        <input type="text" id="language2" name="language1" list="language-list" placeholder="Choose a language">
+                           <datalist id="language-list">
+                                  {% for l in languages %}
+                                      <option value="{{l[0]}}"> {{ l[0] }}</option>
+                                  {% endfor %}
+                            </datalist>
+                </div>
+            </div>
+            <div>
+                <div class="col-md-11">
+                <label for="language2" >Language 2</label>
 
-        <div>
-            <div class="col-md-11">
-          <label for="language2" >language2</label>
-
-            <input class="form-control" type="text"  name="language2">
-          </div>
+                    <input type="text" id="language2" name="language2" list="language-list" placeholder="Choose a language">
+                       <datalist id="language-list">
+                              {% for l in languages %}
+                                  <option value="{{l[0]}}"> {{ l[0] }}</option>
+                              {% endfor %}
+                        </datalist>
+                </div>
+            </div>
         </div>
-    </div>
+        <br>
         <div class="form-group">
             <button class="btn btn-outline-info btn-block">Submit</button>
          </div>

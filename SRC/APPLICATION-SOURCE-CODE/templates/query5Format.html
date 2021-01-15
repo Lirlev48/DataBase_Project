@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
 
-  <title>Query1 Output</title>
+  <title>Query5 Output</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -16,6 +15,7 @@
 
 
 </head>
+
 
 <body>
 
@@ -29,13 +29,16 @@
         <table id = "myTable" class= "table-responsive container table table-hover table-bordered table-striped" style="width:100%; border:1px solid black;margin-left:auto;margin-right:auto;padding:2px;border-spacing:20px;">
             <thead style = "background-color: #182953; color: white;" align= "center">
                 <tr>
-                    	<th align ='center'>Movie</th>
+                    	<th align ='center'>Title</th>
+                        <th align ='center'>overview</th>
+
                 </tr>
             </thead>
             <tbody align = "center">
-                {% for movie in iter_movies %}
+                {% for title_and_overview in iter_title_and_overview %}
                 <tr>
-                    	<td align ='center'> {{ movie[0] }}</td>
+                    	<td align ='center'> {{ title_and_overview[0] }}</td>
+                        <td align ='center'> {{ title_and_overview[1] }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -63,9 +66,8 @@ $(document).ready(function(){
   </div>
 </div>
 
-
 <div class="img" align = "center">
-                            <img src="https://images.all-free-download.com/images/graphiclarge/photographic_equipment_vector_288713.jpg"/>
+            <img src="https://images.all-free-download.com/images/graphiclarge/photographic_equipment_vector_288713.jpg"/>
 </div>
 
 </body>

@@ -1,15 +1,13 @@
 import mysql.connector
 from mysql.connector import errorcode
-from datetime import date
-from datetime import datetime
 import queries
 from sshtunnel import SSHTunnelForwarder
 
 
-def est_connection(query, args=None): # TODO change name of func, variables, prints and details
+def est_connection(query, args=None):
     tunnel = SSHTunnelForwarder(('nova.cs.tau.ac.il', 22),
-                                                                                                              ssh_username= 'saharg', # input("insert your moodle username: "),
-                                                                                                              ssh_password= 'Shani555', # input("insert your moodle password: "),
+                                ssh_username='saharg',
+                                ssh_password='Taupass6',
                                 remote_bind_address=('mysqlsrv1.cs.tau.ac.il', 3306))
     tunnel.start()
     details = {
@@ -31,24 +29,63 @@ def est_connection(query, args=None): # TODO change name of func, variables, pri
         else:
             print(er)
     cur = cnx.cursor(buffered=True)
-    if (args != None):
+    if args is not None:
         cur.execute(query, args)
     else:
         cur.execute(query)
-    iterator = [t[0] for t in cur]
+    iterator = list(cur)
     cnx.commit()
     cnx.close()
     return iterator
 
 
-def RenderMoviesFromGeneres(genre, from_date, to_date, limit): #change name of func and variables
+def render_rank_top_languages(from_date, to_date):
+    args = (from_date, to_date)
+    return est_connection(queries.rank_top_languages(), args)
+
+
+def render_return_the_specialization_genre_of_companies(country_name):
+    args = (country_name)
+    return est_connection(queries.return_the_specialization_genre_of_companies(), args)
+
+
+def render_all_genres():
+    generate_all_generes = queries.return_all_generes()
+    return est_connection(generate_all_generes)
+
+
+def render_all_languages():
+    generate_all_language = queries.return_all_languages()
+    return est_connection(generate_all_language)
+
+
+def runtime_genre_languages(runtime_from, runtime_to, genre, language1, language2):
+    args = (int(runtime_from), int(runtime_to), genre, language1, language2,)
+    return est_connection(queries.last(), args)
+
+
+def render_all_countries():
+    generate_all_countries = queries.generate_all_countries()
+    return est_connection(generate_all_countries)
+
+
+def render_movies_from_generes(genre, from_date, to_date, limit):
     genre = genre
     limit = int(limit)
     args = (genre, from_date, to_date, limit,)
-    iter = est_connection(queries.get_movies_by_genre_and_date_range(), args)
-    return iter
+    return est_connection(queries.get_movies_by_genre_and_date_range(), args)
 
-def renderAllGenres():
-    generate_all_generes = queries.return_all_generes()
-    iter = est_connection(generate_all_generes)
-    return iter
+
+def render_movies_from_text(fulltext, from_date, to_date):
+    args = (fulltext, from_date, to_date,)
+    return est_connection(queries.movies_from_text(), args)
+
+
+def render_avg_vote_for_company_and_genre(limit):
+    args = (int(limit),)
+    return est_connection(queries.production_company_and_genre_average_vote(), args)
+
+
+def render_num_of_movies_for_language_in_specific_budget_range(minimum_budget, maximum_budget):
+    args = (int(minimum_budget), int(maximum_budget),)
+    return est_connection(queries.num_of_movies_for_language_in_specific_budget_range(), args)
