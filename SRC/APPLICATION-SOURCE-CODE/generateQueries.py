@@ -61,7 +61,7 @@ def render_all_languages():
 
 def runtime_genre_languages(runtime_from, runtime_to, genre, language1, language2):
     args = (int(runtime_from), int(runtime_to), genre, language1, language2,)
-    return est_connection(queries.last(), args)
+    return est_connection(queries.movie_recommendation(), args)
 
 
 def render_all_countries():

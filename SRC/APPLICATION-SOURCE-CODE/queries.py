@@ -89,7 +89,7 @@ def num_of_movies_for_language_in_specific_budget_range():
             "order by count DESC")
 
 
-def last():
+def movie_recommendation():
     return ("SELECT movies.title, movies.vote_average, movies.runtime "
             "from movies, movies_to_genres, genres,movies_to_spoken_languages as mtsl, spoken_languages " 
             "where movies.imdb_id = movies_to_genres.imdb_id and movies_to_genres.genres_id = genres.id "
