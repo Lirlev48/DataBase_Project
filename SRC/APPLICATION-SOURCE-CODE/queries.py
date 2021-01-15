@@ -3,7 +3,7 @@ def get_movies_by_genre_and_date_range():
             "FROM movies, movies_to_genres, genres "
             "WHERE movies.imdb_id = movies_to_genres.imdb_id "
             "AND movies_to_genres.genres_id = genres.id "
-            "AND genres.genre LIKE %s "
+            "AND genres.genre = %s "
             "AND movies.release_date BETWEEN DATE (%s) AND DATE (%s) "
             "ORDER BY  movies.release_date DESC "
             "LIMIT %s")
@@ -45,7 +45,7 @@ def return_the_specialization_genre_of_companies():
             "AND movies_to_genres.genres_id = genres.id AND movies.imdb_id = movies_to_genres.imdb_id "
             "AND movies_to_production_companies.imdb_id =  movies.imdb_id "
             "AND movies_to_production_companies.production_companies_id =  production_companies.id "
-            "AND production_countries.name like '%s' "
+            "AND production_countries.name = '%s' "
             "GROUP BY production_companies.name, genres.genre) as tlb "
             "WHERE tlb.count_movies_per_genre >= ALL(SELECT "
             "count(distinct movies.imdb_id) as count_movies_per_genre "
@@ -55,9 +55,10 @@ def return_the_specialization_genre_of_companies():
             "AND movies_to_genres.genres_id = genres.id AND movies.imdb_id = movies_to_genres.imdb_id "
             "AND movies_to_production_companies.imdb_id =  movies.imdb_id "
             "AND movies_to_production_companies.production_companies_id =  production_companies.id "
-            "AND production_countries.name like '%s' "
+            "AND production_countries.name = '%s' "
             "AND tlb.pname =production_companies.name "
             "GROUP BY production_companies.name, genres.genre)"
+            "order by company,genre"
             )
 
 
