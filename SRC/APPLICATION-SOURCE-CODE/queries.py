@@ -91,11 +91,9 @@ def num_of_movies_for_language_in_specific_budget_range():
 
 def last():
     return ("SELECT movies.title, movies.vote_average, movies.runtime "
-            "from movies, movies_to_genres, genres "
+            "from movies, movies_to_genres, genres,movies_to_spoken_languages as mtsl, spoken_languages " 
             "where movies.imdb_id = movies_to_genres.imdb_id and movies_to_genres.genres_id = genres.id "
+            "and mtsl.spoken_languages_id = spoken_languages.id and mtsl.imdb_id = movies.imdb_id "
             "and movies.runtime >= %s and movies.runtime <= %s and genres.genre = %s "
-            "and movies.imdb_id in "
-            "(Select Distinct mtsl.imdb_id from movies_to_spoken_languages as mtsl, spoken_languages "
-            "where mtsl.spoken_languages_id = spoken_languages.id "
-            "and spoken_languages.english_name in (%s, %s)) "
-            "order by movies.vote_average DESC")
+            "and spoken_languages.english_name in (%s, %s) "
+            "order by movies.vote_average DESC ")
