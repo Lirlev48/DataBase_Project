@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/index")
 def home():
-    return render_template('homepage.html')
+    return render_template('index.html')
 
 
 @app.route("/q1")
@@ -57,7 +57,7 @@ def q1_result():
     to_date = request.form.get("to")
     limit = request.form.get("limit")
     if limit == "" or not limit.isdigit() or genre == "" or genre not in genre_list:
-        return render_template('404page.html')
+        return render_template('404.html')
     iter_res = generateQueries.render_movies_from_generes(genre, from_date, to_date, limit)
     return render_template('query1Format.html', iter_movies=iter_res)
 
@@ -75,7 +75,7 @@ def q3_result():
     country_list = [t[0] for t in generateQueries.render_all_countries()]
     country = request.form.get("countries")
     if country == "" or country not in country_list:
-        return render_template('404page.html')
+        return render_template('404.html')
     iter_res = generateQueries.render_return_the_specialization_genre_of_companies(country)
     return render_template('query3Format.html', iter_res=iter_res)
 
@@ -84,7 +84,7 @@ def q3_result():
 def q4_result():
     limit = request.form.get("limit")
     if limit == "" or not limit.isdigit():
-        return render_template('404page.html')
+        return render_template('404.html')
     iter_res = generateQueries.render_avg_vote_for_company_and_genre(limit)
     return render_template('query4Format.html', iter_companies_genres_votes=iter_res)
 
@@ -96,7 +96,7 @@ def q5_result():
     fulltext_in = request.form.get("fulltext_in")
     fulltext_out = request.form.get("fulltext_out")
     if fulltext_in == "" or fulltext_out == "":
-        return render_template('404page.html')
+        return render_template('404.html')
     iter_res = generateQueries.render_movies_from_text(f"+{fulltext_in}* -{fulltext_out}*", from_date, to_date)
     return render_template('query5Format.html', iter_title_and_overview=iter_res)
 
@@ -107,7 +107,7 @@ def q6_result():
     maximum_budget = request.form.get("maximum_budget")
     if maximum_budget == "" or not maximum_budget.isdigit()\
             or minimum_budget == "" or not minimum_budget.isdigit():
-        return render_template('404page.html')
+        return render_template('404.html')
     iter_res = generateQueries.render_num_of_movies_for_language_in_specific_budget_range(minimum_budget, maximum_budget)
     return render_template('query6Format.html', iter_language_and_num_of_movies=iter_res)
 
@@ -126,7 +126,7 @@ def q7_result():
             or genre == "" or genre not in genre_list \
             or language1 not in language_list or language2 not in language_list \
             or language1 == "" or language2 == "":
-        return render_template('404page.html')
+        return render_template('404.html')
     iter_res = generateQueries.runtime_genre_languages(runtime_from, runtime_to, genre, language1, language2)
     return render_template('query7Format.html', iter_movies=iter_res)
 
