@@ -5,17 +5,17 @@ from sshtunnel import SSHTunnelForwarder
 
 
 def est_connection(query, args=None):
-    tunnel = SSHTunnelForwarder(('nova.cs.tau.ac.il', 22),
-                                ssh_username='saharg',
-                                ssh_password='',
-                                remote_bind_address=('mysqlsrv1.cs.tau.ac.il', 3306))
-    tunnel.start()
+    # tunnel = SSHTunnelForwarder(('nova.cs.tau.ac.il', 22),
+    #                             ssh_username='saharg',
+    #                             ssh_password='',
+    #                             remote_bind_address=('mysqlsrv1.cs.tau.ac.il', 3306))
+    # tunnel.start()
     details = {
         'user': 'DbMysql02',
         'password': 'DbMysql02',
-        'host': '127.0.0.1',
+        'host': 'mysqlsrv1.cs.tau.ac.il',    # '127.0.0.1',
         'database': 'DbMysql02',
-        'port': tunnel.local_bind_port,
+        'port': '3306',     # tunnel.local_bind_port,
         'raise_on_warnings': True,
     } # add connector details
     cnx = mysql.connector.connect(**details)
