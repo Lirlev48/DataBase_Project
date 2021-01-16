@@ -13,9 +13,11 @@ def est_connection(query, args=None):
     details = {
         'user': 'DbMysql02',
         'password': 'DbMysql02',
-        'host': 'mysqlsrv1.cs.tau.ac.il',    # '127.0.0.1',
+        'host': 'mysqlsrv1.cs.tau.ac.il',
+        # 'host': '127.0.0.1',
         'database': 'DbMysql02',
-        'port': '3306',     # tunnel.local_bind_port,
+        'port': '3306',
+        # 'port': tunnel.local_bind_port,
         'raise_on_warnings': True,
     } # add connector details
     cnx = mysql.connector.connect(**details)
@@ -45,7 +47,7 @@ def render_rank_top_languages(from_date, to_date):
 
 
 def render_return_the_specialization_genre_of_companies(country_name):
-    args = (country_name)
+    args = (country_name, country_name,)
     return est_connection(queries.return_the_specialization_genre_of_companies(), args)
 
 
